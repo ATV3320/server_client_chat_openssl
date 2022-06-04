@@ -1,0 +1,14 @@
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout certificate.pem -out certificate.pem
+
+gcc -Wall -o ins-ssl-server ins-ssl-server.c -L/usr/lib -lssl -lcrypto
+
+sudo ./ins-ssl-server 6000
+
+gcc -Wall -o ins-ssl-client ins-ssl-client.c -L/usr/lib -lssl -lcrypto
+
+./ins-ssl-client (ip address) 6000
+
+
+ssldump -i wlan0 port 6000
+
+172.17.0.1
